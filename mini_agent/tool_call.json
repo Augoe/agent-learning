@@ -1,0 +1,7 @@
+{
+    "name": "calculator",
+    "arguments": {
+        "a": 128,
+        "b": 72
+    }
+}
