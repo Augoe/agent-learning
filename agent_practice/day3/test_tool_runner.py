@@ -1,11 +1,11 @@
-from agent_practice.day3 import tool_runner
-
+from tool_runner import run_tool
+import tool_runner
 
 # 测试1：正常执行
 def test_add_success(valid_tool_calls):
     data = valid_tool_calls
 
-    result = tool_runner.run_tool(
+    result = run_tool(
         data["name"],
         data["arguments"]
     )
@@ -16,7 +16,7 @@ def test_add_success(valid_tool_calls):
 
 # 测试2：负数相加
 def test_add_negative():
-    result = tool_runner.run_tool(
+    result = run_tool(
         "add",
         {"a": -5, "b": 3}
     )
@@ -27,7 +27,7 @@ def test_add_negative():
 
 # 测试3：工具不存在
 def test_unknown_tool():
-    result = tool_runner.run_tool(
+    result = run_tool(
         "unknown",
         {"a": 1, "b": 2}
     )
@@ -38,7 +38,7 @@ def test_unknown_tool():
 
 # 测试4：参数缺失
 def test_invalid_arguments():
-    result = tool_runner.run_tool(
+    result = run_tool(
         "add",
         {"a": 1}
     )
@@ -49,7 +49,7 @@ def test_invalid_arguments():
 
 # 测试5：工具执行异常
 def test_divide_by_zero():
-    result = tool_runner.run_tool(
+    result = run_tool(
         "divide",
         {"a": 1, "b": 0}
     )

@@ -1,5 +1,4 @@
-from agent_practice.day1 import tools
-from agent_practice.day1 import TOOL_REGISTRY
+from agent_practice.day1.tools import TOOL_REGISTRY
 
 
 
