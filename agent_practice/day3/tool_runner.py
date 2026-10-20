@@ -1,35 +1,37 @@
-import pathlib
 from agent_practice.day1 import tools
-tool_path =pathlib.Path(__file__).parent / 'day1/tools.py'
-tool={
-     "add": tools.add,
-     "divide": tools.divide
-}
+from agent_practice.day1 import TOOL_REGISTRY
+
 
 
 def run_tool(name, arguments):
+    # 1. 查找工具
+    func = TOOL_REGISTRY.get(name)
+
+    if func is None:
+        return {
+            "success": False,
+            "error": f"Tool {name} not found"
+        }
+
+    # 2. 执行工具
     try:
-        func=tool[name]
-        data={
-            "success": "True",
-            "result": func(*arguments)
-        }
-        return data
-    except KeyError:
-        print(f"Tool {name} not found")
+        result = func(**arguments)
+
         return {
-            "success": "False",
-            "result": None
+            "success": True,
+            "result": result
         }
-    except TypeError:
-        print(f"Tool {name} received incorrect arguments")
+
+    # 3. 处理参数错误
+    except TypeError as e:
         return {
-            "success": "False",
-            "result": None
+            "success": False,
+            "error": f"Invalid arguments: {e}"
         }
+
+    # 4. 处理其他异常
     except Exception as e:
-        print(f"An error occurred while running tool {name}: {e}")
         return {
-            "success": "False",
-            "result": None
+            "success": False,
+            "error": f"Tool execution failed: {e}"
         }

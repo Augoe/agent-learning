@@ -12,9 +12,3 @@ def valid_tool_calls():
 @pytest.fixture
 def mock_tool():
     return Mock(return_value="模拟成功")
-
-@pytest.fixture
-def mock_tool_with_assertion():
-    tool = Mock(return_value="模拟成功")
-    tool.assert_called_once_with = Mock()
-    return tool

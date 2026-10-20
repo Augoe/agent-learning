@@ -21,5 +21,6 @@ TOOL_REGISTRY = {
     "add": add,
     "multiply": multiply,
     "greet": greet,
-    "subtract": subtract
+    "subtract": subtract,
+    "divide": divide
 }
